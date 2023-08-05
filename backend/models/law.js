@@ -1,30 +1,22 @@
 const mongoose = require('mongoose');
 
-const sectionSchema = new mongoose.Schema({
+const lawSchema = new mongoose.Schema({
+  title: {
+    type: String,
+    required: true
+  },
   content: {
     type: String,
-    required: true,
+    required: true
   },
-});
-
-const headingSchema = new mongoose.Schema({
-  headingTitle: {
+  type: {
     type: String,
-    required: true,
+    required: true
   },
-  sections: [sectionSchema],
-});
-
-const lawSchema = new mongoose.Schema({
-  lawId: {
-    type: Number,
-    required: true,
-  },
-  lawTitle: {
+  keyword: {
     type: String,
-    required: true,
-  },
-  headings: [headingSchema],
+    required: true
+  }
 });
 
 const Law = mongoose.model('Law', lawSchema);

@@ -3,12 +3,16 @@ import express from "express";
 import mongoose from "mongoose";
 import cors from 'cors';
 import authRouter from "./routes/routes.js"; // Make sure the correct path to authe.js is provided
-
+const express = require('express');
+module.exports = router;
 const app = express();
-
 // Allow requests from http://localhost:3000 (your frontend)
 app.use(cors());
 app.use(express.json());
+
+// Import the lawRoutes and use it as middleware
+const lawRoutes = require('./routes/lawroutes');
+app.use('/', lawRoutes);
 
 // Connect to MongoDB Atlas
 mongoose.connect("mongodb+srv://a:a@cluster0.z2vzoef.mongodb.net/", {
@@ -30,3 +34,4 @@ const port = process.env.PORT || 4000;
 app.listen(port, () => {
   console.log(`Server started on http://localhost:${port}`);
 });
+

@@ -1,29 +1,49 @@
 import React, { useState, useEffect } from 'react';
-import { useParams } from 'react-router-dom';
-import axios from 'axios';
-import '../../styles/general.css';
-import '../../styles/content.css';
-
-/* Law Content Checklist:
- * [ ] Connect to the database to fetch the law content using: lawId, lawTitle, headings, sections, content
- * [ ] Fix up the properties to match the database/ERD - if possible (again, mb!)
- * [?] is only having index.jsx for lawContent enough - should there be a separate jsx for something?
-*/
+  import { useParams } from 'react-router-dom';
+  import axios from 'axios';
+  import '../../styles/general.css';
+  import '../../styles/content.css';
 
 const LawContentPage = () => {
-  const { lawId } = useParams();
   const [lawContent, setLawContent] = useState(null);
 
   useEffect(() => {
-    // Make an HTTP request to fetch the law data
-    axios.get(`/api/laws/${lawId}`)
-      .then((response) => {
-        setLawContent(response.data); // Update the state with the fetched law data
-      })
-      .catch((error) => {
-        console.error('Error fetching law data:', error);
-      });
-  }, [lawId]);
+    // Sample data object to populate the page
+    const sampleLawData = {
+      lawTitle: 'Sample Law Title 1',
+      headings: [
+        {
+          headingTitle: 'Sample Heading 1',
+          sections: [
+            {
+              content:
+                'Section 1. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Turpis massa sed elementum tempus. Ornare aenean euismod elementum nisi quis eleifend quam.',
+            },
+            {
+              content:
+                'Section 2. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Turpis massa sed elementum tempus. Ornare aenean euismod elementum nisi quis eleifend quam.',
+            },
+          ],
+        },
+        {
+          headingTitle: 'Sample Heading 2',
+          sections: [
+            {
+              content:
+                'Section 1. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Turpis massa sed elementum tempus. Ornare aenean euismod elementum nisi quis eleifend quam.',
+            },
+            {
+              content:
+                'Section 2. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Turpis massa sed elementum tempus. Ornare aenean euismod elementum nisi quis eleifend quam.',
+            },
+          ],
+        },
+      ],
+    };
+
+    // Set the law content based on the sample data
+    setLawContent(sampleLawData);
+  }, []);
 
   if (!lawContent) {
     return (
@@ -66,4 +86,3 @@ const LawContentPage = () => {
 };
 
 export default LawContentPage;
-

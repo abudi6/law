@@ -60,7 +60,7 @@ function App() {
             <Route path="/register" element={<RegisterPage />} />
             <Route path="/search" element={<SearchPage />} />
             <Route path="/search-results" element={<SearchResultsPage />} />
-            <Route path="/law-content/:lawId" element={<LawContentPage />} />
+            <Route path="/law-content/:1" element={<LawContentPage />} />
             <Route path="/user-profile" element={<UserProfile />} />
             <Route path="/admin-dashboard" element={<AdminDashboard />} />
           </Routes>

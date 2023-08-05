@@ -1,0 +1,75 @@
+.log-card {
+    border-radius: 20px;
+    height: 500px;
+}
+
+#welcome-side {
+    padding: 20px 0 20px 0;
+    height: 500px;
+}
+
+#login-side {
+    background-color: #6a498a;
+    border-radius: 0 20px 20px 0;
+    height: 500px;
+}
+
+@media (max-width: 767px) {
+    #welcome-side {
+      border-radius: 20px 20px 0 0;
+      margin-bottom: -20px;
+    }
+  
+    #login-side {
+      border-radius: 0 0 20px 20px;
+      border-top: 2px solid #6a498a; /* Add 2px top border to compensate for the space */
+    }
+}
+
+.login-form-label {
+    font-weight: bold;
+    color: #ffffff;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.25);
+}
+
+.login-form-label:focus {
+    color: #ffffff;
+}
+
+.login-form-control {
+    color: #ffffff;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+    background-color: transparent;
+    border-color: #ffffff;
+}
+
+.login-form-control:focus-within {
+    color: #ffffff;
+    background-color: transparent;
+    border-color: #ffffff;
+    box-shadow: none;
+}
+
+.link-light {
+    text-decoration: none;
+}
+
+.link-light:hover {
+    text-decoration: underline;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+}
+
+.login-btn {
+    font-family: 'Lexend Exa', sans-serif;
+    font-size: 16px;
+    font-weight: bold;
+    color: #3a086b;
+    background-color: #ffffff;
+    border-color: #3a086b;
+}
+
+.login-btn:hover {
+    color: #ffffff;
+    background-color: #3a086b;
+    border-color: #3a086b;
+}

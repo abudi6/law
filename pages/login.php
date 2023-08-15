@@ -3,12 +3,13 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $username = $_POST['username'];
     $password = $_POST['password'];
 
-    $db_host = "your_db_host";
-    $db_user = "your_db_username";
-    $db_pass = "your_db_password";
-    $db_name = "your_db_name";
-
-    $conn = new mysqli($db_host, $db_user, $db_pass, $db_name);
+    $db_host = "localhost";
+    $db_user = "root";
+    $db_pass = "";
+    $db_name = "law";
+    $db_port = 3307;
+    
+    $conn = new mysqli($db_host, $db_user, $db_pass, $db_name,$db_port);
 
     if ($conn->connect_error) {
         die("Connection failed: " . $conn->connect_error);
@@ -30,6 +31,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
     $conn->close();
 }
+?>
+
 ?>
 <!DOCTYPE html>
 <html lang="en">

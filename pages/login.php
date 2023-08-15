@@ -1,19 +1,34 @@
 <?php
-// Handle login logic here
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-    $data = json_decode(file_get_contents('php://input'), true);
+    $username = $_POST['username'];
+    $password = $_POST['password'];
 
-    // Replace these lines with your actual authentication logic
-    $username = $data['username'];
-    $password = $data['password'];
+    $db_host = "your_db_host";
+    $db_user = "your_db_username";
+    $db_pass = "your_db_password";
+    $db_name = "your_db_name";
 
-    if ($username === 'your_valid_username' && $password === 'your_valid_password') {
-        http_response_code(200);
-        echo json_encode(["message" => "Login successful!"]);
-    } else {
-        http_response_code(401);
-        echo json_encode(["message" => "Login failed"]);
+    $conn = new mysqli($db_host, $db_user, $db_pass, $db_name);
+
+    if ($conn->connect_error) {
+        die("Connection failed: " . $conn->connect_error);
     }
+
+    $sql = "SELECT * FROM users WHERE username = '$username'";
+    $result = $conn->query($sql);
+
+    if ($result->num_rows === 1) {
+        $user = $result->fetch_assoc();
+        if (password_verify($password, $user['password'])) {
+            echo "Login successful!";
+        } else {
+            echo "Login failed";
+        }
+    } else {
+        echo "Login failed";
+    }
+
+    $conn->close();
 }
 ?>
 <!DOCTYPE html>

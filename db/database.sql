@@ -7,3 +7,11 @@ CREATE TABLE users (
 
 INSERT INTO `users` (`id`, `email`, `username`, `password`) VALUES
 (1,'email@email.com','username', 'password');
+
+CREATE TABLE laws (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    title VARCHAR(255) NOT NULL,
+    content TEXT NOT NULL,
+    type VARCHAR(50),
+    keyword VARCHAR(100)
+);

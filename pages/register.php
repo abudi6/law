@@ -24,10 +24,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         echo '<script>alert("Username has been taken!");</script>';
         echo '<script>window.location.assign("register.php");</script>';
     } else {
-        $hashedPassword = password_hash($password, PASSWORD_DEFAULT); // Hash the password before storing
 
         $insertQuery = "INSERT INTO users (username, password, email) 
-                        VALUES ('$username', '$hashedPassword', '$email')";
+                        VALUES ('$username', '$password', '$email')";
 
         if (mysqli_query($conn, $insertQuery)) {
             echo '<script>alert("Successfully Registered!");</script>';

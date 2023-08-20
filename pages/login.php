@@ -9,21 +9,31 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $db_name = "law";
     $db_port = 3307;
     
-    $conn = new mysqli($db_host, $db_user, $db_pass, $db_name,$db_port);
+    $conn = new mysqli($db_host, $db_user, $db_pass, $db_name, $db_port);
 
     if ($conn->connect_error) {
         die("Connection failed: " . $conn->connect_error);
     }
+
+    // Validate and sanitize user inputs
+    $username = mysqli_real_escape_string($conn, $username);
 
     $sql = "SELECT * FROM users WHERE username = '$username'";
     $result = $conn->query($sql);
 
     if ($result->num_rows === 1) {
         $user = $result->fetch_assoc();
-        if (password_verify($password, $user['password'])) {
-            echo "Login successful!";
+        if ($password === $user['password']) {
+            // Start a session and set user authentication status
+            session_start();
+            $_SESSION['username'] = $user['username'];
+            $_SESSION['authenticated'] = true;
+            echo "login successful";
+            // Redirect the user after successful login
+            header("Location: dashboard.php"); // Replace with the actual dashboard page
+            exit();
         } else {
-            echo "Login failed";
+            echo "credential fail";
         }
     } else {
         echo "Login failed";
@@ -56,7 +66,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                         <!-- Login Container - Login Form -->
                         <div class="col-md-6 col-lg-6 d-flex align-items-center" id="login-side">
                             <div class="card-body p-4 p-lg-5 text-black">
-                                <form action="path_to_your_php_script/login.php" method="POST">
+                                <form action="login.php" method="POST"> <!-- Change to the correct PHP script -->
                                     <div class="form-group mb-4">
                                         <label class="form-label login-form-label" for="username">Username</label>
                                         <input 
@@ -64,6 +74,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                                             id="username" 
                                             class="form-control form-control-md login-form-control" 
                                             name="username"
+                                            required 
                                         />
                                     </div>
 
@@ -74,6 +85,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                                             id="password" 
                                             class="form-control form-control-md login-form-control"
                                             name="password"
+                                            required 
                                         />
                                     </div>
 
@@ -96,3 +108,5 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     </div>
 </body>
 </html>
+
+

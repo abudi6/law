@@ -22,7 +22,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
     if (mysqli_num_rows($result) > 0) {
         echo '<script>alert("Username has been taken!");</script>';
-        echo '<script>window.location.assign("useradd.php");</script>';
+        echo '<script>window.location.assign("register.php");</script>';
     } else {
         $hashedPassword = password_hash($password, PASSWORD_DEFAULT); // Hash the password before storing
 
@@ -31,7 +31,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
         if (mysqli_query($conn, $insertQuery)) {
             echo '<script>alert("Successfully Registered!");</script>';
-            echo '<script>window.location.assign("useradd.php");</script>';
+            echo '<script>window.location.assign("register.php");</script>';
         } else {
             echo "Error: " . mysqli_error($conn);
         }

@@ -1,13 +1,15 @@
-CREATE TABLE users (
+
+CREATE TABLE IF NOT EXISTS users (
     id INT AUTO_INCREMENT PRIMARY KEY,
     email VARCHAR(255) NOT NULL,
-    username VARCHAR(255) NOT NULL,
+    username VARCHAR(255) NOT NULL UNIQUE,
     password VARCHAR(255) NOT NULL,
     admin BOOLEAN NOT NULL
-);  
+);
 
-INSERT INTO `users` (`id`, `email`, `username`, `password`, 'admin') VALUES
-(1,'email@email.com','username', 'password', 'admin');
+INSERT INTO users (email, username, password, admin) VALUES
+('email@email.com', 'username', 'password', TRUE);
+
 
 CREATE TABLE laws (
     id INT AUTO_INCREMENT PRIMARY KEY,

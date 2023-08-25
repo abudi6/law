@@ -4,7 +4,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $password = $_POST['password'];
     $email = $_POST['email'];
 
-    $db_name = "law"; // Update with your actual database name
+    $db_name = "users"; // Update with your actual database name
     $db_user = "root"; // Update with your database username
     $db_pass = "";     // Update with your database password
     $db_host = "localhost";

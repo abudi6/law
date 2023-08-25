@@ -18,3 +18,9 @@ CREATE TABLE laws (
     type VARCHAR(50),
     keyword VARCHAR(100)
 );
+
+
+CREATE TABLE annotations (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    annotationtext VARCHAR(255) NOT NULL
+)

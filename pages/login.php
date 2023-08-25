@@ -28,7 +28,30 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             session_start();
             $_SESSION['username'] = $user['username'];
             $_SESSION['authenticated'] = true;
+            
             echo "login successful";
+            
+            // Fetch annotations for the user
+            $annotations = array();
+            $user_id = $user['id'];
+            $sql_annotations = "SELECT annotationtext FROM annotations WHERE user_id = $user_id";
+            $result_annotations = $conn->query($sql_annotations);
+            if ($result_annotations->num_rows > 0) {
+                while ($row = $result_annotations->fetch_assoc()) {
+                    $annotations[] = $row['annotationtext'];
+                }
+            }
+            
+            // Fetch bookmarks for the user
+            $bookmarks = array();
+            $sql_bookmarks = "SELECT * FROM bookmarks WHERE user_id = $user_id";
+            $result_bookmarks = $conn->query($sql_bookmarks);
+            if ($result_bookmarks->num_rows > 0) {
+                while ($row = $result_bookmarks->fetch_assoc()) {
+                    $bookmarks[] = $row;
+                }
+            }
+            
             // Redirect the user after successful login
             header("Location: dashboard.php"); // Replace with the actual dashboard page
             exit();

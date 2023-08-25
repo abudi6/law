@@ -12,11 +12,11 @@ INSERT INTO users (email, username, password, admin) VALUES
 
 
 CREATE TABLE laws (
-    id INT AUTO_INCREMENT PRIMARY KEY,
-    title VARCHAR(255) NOT NULL,
-    content TEXT NOT NULL,
+    lawId INT AUTO_INCREMENT PRIMARY KEY,
+    lawTitle VARCHAR(255) NOT NULL,
+    lawDescription TEXT NOT NULL,
     type VARCHAR(50),
-    keyword VARCHAR(100)
+    keywords VARCHAR(100)
 );
 
 

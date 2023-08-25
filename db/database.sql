@@ -20,7 +20,13 @@ CREATE TABLE laws (
 );
 
 
+CREATE TABLE IF NOT EXISTS annotations (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    annotationtext VARCHAR(255) NOT NULL,
+    user_id INT NOT NULL,
+    FOREIGN KEY (user_id) REFERENCES users(id)
+);
+
 CREATE TABLE annotations (
     id INT AUTO_INCREMENT PRIMARY KEY,
-    annotationtext VARCHAR(255) NOT NULL
 )
